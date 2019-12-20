@@ -1,0 +1,80 @@
+// POST /server/login
+// GET /server/structure
+
+{
+  "structure": [{
+    "name": "Personal",
+    "shared": false,
+    "children": [{
+      "_id": "aopsdijfasopnga",
+      "name": "Personal connection",
+      "type": "CONNECTION",
+      "connectionDetails": {
+
+      }
+    }]
+  }, {
+    "name": "Team",
+    "shared": true,
+    "children": [{
+      "_id": "osadnfhoasidfbaod",
+      "name": "Folder 1",
+      "type": "FOLDER",
+      "children": [{
+        "_id": "aopsdijfasopnga",
+        "name": "Team connection 1",
+        "type": "CONNECTION",
+        "connectionDetails": {
+
+        }
+      }]
+    }, {
+      "_id": "osadnfhoasidfbaod",
+      "name": "Folder 2",
+      "type": "FOLDER",
+      "children": [{
+        "_id": "aopsdijfasopnga",
+        "name": "Team connection 2",
+        "type": "CONNECTION",
+        "connectionDetails": {
+
+        }
+      }]
+    }]
+  }]
+}
+
+
+
+// get structure
+{
+  "structure": [{
+    "name": "Personal",
+    "shared": false,
+    "children": [{
+      "id": ObjectID("aopsdjfpoai"),
+      "name": "Folder xy",
+      "type": "FOLDER"/"CONNECTION"
+    }]
+  }]
+}
+
+// child/folder
+{
+  "children": [{
+    "id": ObjectID("aopsdjfpoai"),
+    "name": "Folder xy",
+    "type": "FOLDER"/"CONNECTION"
+  }]
+}
+
+// connection (evtl alles verschlüsseln)
+{
+  "id": "",
+  "name": "",
+  "hostName": "",
+  "port": 22,
+  "userName": "",
+  "password": "",
+  "connectionType": "SSH",
+}
