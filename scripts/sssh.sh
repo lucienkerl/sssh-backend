@@ -35,10 +35,11 @@ then
     OUTPUT=$2
 fi
 
+DOCKER_DIR="$OUTPUT/docker"
 SCRIPTS_DIR="$OUTPUT/scripts"
 GITHUB_BASE_URL="https://raw.githubusercontent.com/lucienkerl/sssh-backend/master/"
-COREVERSION="1.0"
-WEBVERSION="1.0"
+COREVERSION="latest"
+WEBVERSION="latest"
 
 # Functions
 
@@ -55,6 +56,16 @@ function downloadRunFile() {
     curl -s -o $SCRIPTS_DIR/run.sh $GITHUB_BASE_URL/scripts/run.sh
     chmod u+x $SCRIPTS_DIR/run.sh
     rm -f $SCRIPTS_DIR/install.sh
+}
+
+function downloadComposeFile() {
+    if [ ! -d "$DOCKER_DIR" ]
+    then
+        mkdir $DOCKER_DIR
+    fi
+    curl -s -o $DOCKER_DIR/docker-compose.yml $GITHUB_BASE_URL/docker-compose.yml
+    chmod u+x $DOCKER_DIR/docker-compose.yml
+    rm -f $DOCKER_DIR/install.sh
 }
 
 function checkOutputDirExists() {
@@ -100,6 +111,7 @@ then
     checkOutputDirNotExists
     mkdir -p $OUTPUT
     downloadRunFile
+    downloadComposeFile
     $SCRIPTS_DIR/run.sh install $OUTPUT $COREVERSION $WEBVERSION
 elif [ "$1" == "start" -o "$1" == "restart" ]
 then
@@ -109,6 +121,7 @@ elif [ "$1" == "update" ]
 then
     checkOutputDirExists
     downloadRunFile
+    downloadComposeFile
     $SCRIPTS_DIR/run.sh update $OUTPUT $COREVERSION $WEBVERSION
 elif [ "$1" == "rebuild" ]
 then
