@@ -18,12 +18,32 @@ router.post('/folders', auth, async (req, res) => {
   }
 })
 
-// TODO
-router.post('/folders/:id', auth, asnyc (req, res) => {
+router.post('/folders/:id', auth, async (req, res) => {
+  const _id = req.params.id
+
   const folder = new Folder({
     ...req.body,
-    parent: 
+    parent: _id,
+    owner: req.user._id,
   })
+
+  try {
+    const parentFolder = await Folder.findById(_id)
+
+    if (!parentFolder) {
+      throw { message: 'Parent folder not found' }
+    }
+
+    await folder.save()
+
+    parentFolder.children.push(folder._id)
+    await parentFolder.save()
+
+    res.status(201).send(folder)
+  } catch (e) {
+    console.log(e)
+    res.status(400).send(e)
+  }
 })
 
 router.get('/folders', auth, async (req, res) => {
