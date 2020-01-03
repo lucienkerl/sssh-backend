@@ -48,7 +48,7 @@ function dockerComposeDown() {
 
 function dockerComposePull() {
     dockerComposeFiles
-    docker-compose build
+    docker-compose pull
 }
 
 function dockerComposeFiles() {
@@ -80,6 +80,10 @@ function install() {
     pullSetup
 }
 
+function dockerPrune() {
+    docker image prune --all --force --filter="label=com.wuerth.product=sssh"
+}
+
 # Commands
 
 if [ "$1" == "install" ]
@@ -88,6 +92,12 @@ then
 elif [ "$1" == "start" -o "$1" == "restart" ]
 then
     restart
+elif [ "$1" == "update" ]
+then
+    dockerComposeDown
+    pullSetup
+    restart
+    dockerPrune
 elif [ "$1" == "start-dev" ]
 then
     startDev

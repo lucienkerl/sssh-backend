@@ -79,7 +79,7 @@ function checkOutputDirExists() {
 function checkOutputDirNotExists() {
     if [ -d "$OUTPUT/docker" ]
     then
-        echo "Looks like Bitwarden is already installed at $OUTPUT."
+        echo "Looks like SSSH is already installed at $OUTPUT."
         exit 1
     fi
 }

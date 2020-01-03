@@ -1,4 +1,5 @@
 FROM node:latest
+LABEL com.wuerth.product=sssh
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY package.json /usr/src/app/
