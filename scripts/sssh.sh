@@ -36,14 +36,14 @@ then
 fi
 
 SCRIPTS_DIR="$OUTPUT/scripts"
-GITHUB_BASE_URL="https://raw.githubusercontent.com/bitwarden/server/master"
-COREVERSION="1.32.0"
-WEBVERSION="2.12.0"
+GITHUB_BASE_URL="https://gitea.wgn.wuerth.com/EBMS/sssh-backend/raw/branch/master/"
+COREVERSION="1.0"
+WEBVERSION="1.0"
 
 # Functions
 
 function downloadSelf() {
-    curl -s -o $SCRIPT_PATH $GITHUB_BASE_URL/scripts/bitwarden.sh
+    curl -s -o $SCRIPT_PATH $GITHUB_BASE_URL/scripts/sssh.sh
     chmod u+x $SCRIPT_PATH
 }
 
@@ -60,7 +60,7 @@ function downloadRunFile() {
 function checkOutputDirExists() {
     if [ ! -d "$OUTPUT" ]
     then
-        echo "Cannot find a Bitwarden installation at $OUTPUT."
+        echo "Cannot find a SSSH installation at $OUTPUT."
         exit 1
     fi
 }
@@ -88,7 +88,7 @@ updateconf
 rebuild
 help
 
-See more at https://help.bitwarden.com/article/install-on-premise/#script-commands
+See more at TBD
 
 EOT
 }
@@ -99,7 +99,7 @@ if [ "$1" == "install" ]
 then
     checkOutputDirNotExists
     mkdir -p $OUTPUT
-    downloadRunFile
+    #downloadRunFile
     $SCRIPTS_DIR/run.sh install $OUTPUT $COREVERSION $WEBVERSION
 elif [ "$1" == "start" -o "$1" == "restart" ]
 then

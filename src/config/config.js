@@ -1,4 +1,4 @@
 module.exports = {
-  mongoDB: 'mongodb://127.0.0.1:27017/sssh-backend',
+  mongoDB: 'mongodb://mongo:27017/sssh-backend',
   jwtToken: 'ssshbackendtoken',
 }
