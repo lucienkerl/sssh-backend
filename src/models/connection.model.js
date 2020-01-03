@@ -12,6 +12,10 @@ const connectionSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
+  port: {
+    type: Number,
+    default: 22,
+  },
   username: {
     type: String,
     trim: true,

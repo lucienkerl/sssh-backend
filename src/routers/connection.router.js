@@ -17,7 +17,7 @@ router.post('/connections/:id', auth, async (req, res) => {
 
     await connection.save()
 
-    folder.connections.push(connectionId)
+    folder.connections.push(connection._id)
     await folder.save()
 
     res.status(201).send(connection)

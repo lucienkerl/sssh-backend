@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const Folder = mongoose.model('Folder', {
+const folderSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -18,18 +18,14 @@ const Folder = mongoose.model('Folder', {
   },
   children: [
     {
-      child: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Folder',
-      },
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Folder',
     },
   ],
   connections: [
     {
-      connection: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Connection',
-      },
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Connection',
     },
   ],
   owner: {
@@ -47,5 +43,17 @@ const Folder = mongoose.model('Folder', {
     },
   ],
 })
+
+// Helper function for deep population of children and connections
+const populateChildrenAndConnections = function(next) {
+  this.populate('children').populate('connections')
+  next()
+}
+
+folderSchema
+  .pre('findOne', populateChildrenAndConnections)
+  .pre('find', populateChildrenAndConnections)
+
+const Folder = mongoose.model('Folder', folderSchema)
 
 module.exports = Folder
