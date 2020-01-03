@@ -36,7 +36,7 @@ then
 fi
 
 SCRIPTS_DIR="$OUTPUT/scripts"
-GITHUB_BASE_URL="https://gitea.wgn.wuerth.com/EBMS/sssh-backend/raw/branch/master/"
+GITHUB_BASE_URL="https://raw.githubusercontent.com/lucienkerl/sssh-backend/master/"
 COREVERSION="1.0"
 WEBVERSION="1.0"
 
@@ -99,7 +99,7 @@ if [ "$1" == "install" ]
 then
     checkOutputDirNotExists
     mkdir -p $OUTPUT
-    #downloadRunFile
+    downloadRunFile
     $SCRIPTS_DIR/run.sh install $OUTPUT $COREVERSION $WEBVERSION
 elif [ "$1" == "start" -o "$1" == "restart" ]
 then
