@@ -23,12 +23,12 @@ function dockerComposePull() {
 }
 
 function dockerComposeFiles() {
-    if [ "$DEV" == true ]
-    then
-        cp ../docker-compose.dev.yml ../docker-compose.override.yml
-    else
-        rm ../docker-compose.override.yml
-    fi
+    #if [ "$DEV" == true ]
+    #then
+    #    cp ../docker-compose.dev.yml ../docker-compose.override.yml
+    #else
+    #    rm ../docker-compose.override.yml
+    #fi
 
     if [ -f "../docker-compose.override.yml" ]
     then
