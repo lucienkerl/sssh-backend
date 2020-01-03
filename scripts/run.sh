@@ -84,7 +84,7 @@ function install() {
 
 if [ "$1" == "install" ]
 then
-    restart
+    install
 elif [ "$1" == "start" -o "$1" == "restart" ]
 then
     restart
