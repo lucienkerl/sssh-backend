@@ -20,6 +20,7 @@ ENV_DIR="$OUTPUT_DIR/env"
 DOCKER_DIR="$OUTPUT_DIR"
 if [ -d "$OUTPUT_DIR/docker" ]
 then
+    echo "$OUTPUT_DIR/docker exists"
     DOCKER_DIR="$OUTPUT_DIR/docker"
 fi
 
