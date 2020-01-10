@@ -93,6 +93,11 @@ function stop() {
     dockerComposeDown
 }
 
+function buildAndUploadToDocker() {
+    docker build -t lucienkerl/sssh-backend ../
+    docker push lucienkerl/sssh-backend:latest
+}
+
 # Commands
 
 if [ "$1" == "install" ]
@@ -104,6 +109,9 @@ then
 elif [ "$1" == "stop" -o "$1" == "stop" ]
 then
     stop
+elif [ "$1" == "buildAndUploadToDocker" ]
+then
+    buildAndUploadToDocker 
 elif [ "$1" == "update" ]
 then
     dockerComposeDown
