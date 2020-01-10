@@ -27,9 +27,13 @@ There are two ways of running a dev server.
 #### Start the Docker Containers
 Just run: 
 
-```npm run dev-docker```
+```cd scripts && ./run.sh start-dev```
 
-You should now have a MongoDB and NodeJS instance running. Just edit the source code. Nodemon will handle a NodeJS Server restart for you.
+You should now have a MongoDB and NodeJS instance running. Just edit the source code. Nodemon will handle a NodeJS Server restart for you. 
+
+___
+It may take a few moments until the MongoDB Database is ready. If it doesn't start in time and you get a timeout from NodeJS, just wait until the database is ready (you will get console output about that) and save any file to restart the nodejs process. Then the NodeJS App should reconnect to the MongoDB and everything should work!
+___
 
 ### Method 2 (Managed by yourself)
 
