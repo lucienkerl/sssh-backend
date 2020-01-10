@@ -4,6 +4,8 @@ services:
         container_name: app
         restart: always
         image: lucienkerl/sssh-backend
+        volumes:
+            - ./config:/usr/src/app/src/config
         ports:
             - "3000:3000"
         links:
