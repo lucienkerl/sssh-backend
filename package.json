@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "cd scripts && ./run.sh start",
-    "dev": "cd scripts && ./run.sh start-dev"
+    "dev": "nodemon src/index.js",
+    "dev-docker": "cd scripts && ./run.sh start-dev"
   },
   "repository": {
     "type": "git",

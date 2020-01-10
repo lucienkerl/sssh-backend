@@ -17,7 +17,7 @@ fi
 OS="lin"
 [ "$(uname)" == "Darwin" ] && OS="mac"
 ENV_DIR="$OUTPUT_DIR/env"
-DOCKER_DIR="$OUTPUT_DIR/docker"
+DOCKER_DIR="$OUTPUT_DIR"
 
 # Initialize UID/GID which will be used to run services from within containers
 if ! grep -q "^LOCAL_UID=" $ENV_DIR/uid.env 2>/dev/null || ! grep -q "^LOCAL_GID=" $ENV_DIR/uid.env 2>/dev/null
@@ -35,7 +35,7 @@ function dockerComposeUp() {
     dockerComposeFiles
     if [ "$DEV" == true ]
     then
-        docker-compose up
+        docker-compose -f ../docker-compose.dev.yml up
     else
         docker-compose up -d
     fi
@@ -56,7 +56,12 @@ function dockerComposeFiles() {
     then
         export COMPOSE_FILE="$DOCKER_DIR/docker-compose.yml:$DOCKER_DIR/docker-compose.override.yml"
     else
-        export COMPOSE_FILE="$DOCKER_DIR/docker-compose.yml"
+        if [ DEV ]
+        then
+            export COMPOSE_FILE="$DOCKER_DIR/docker-compose.dev.yml"
+        else
+            export COMPOSE_FILE="$DOCKER_DIR/docker-compose.yml"
+        fi
     fi
     export COMPOSE_HTTP_TIMEOUT="300"
 }
@@ -84,6 +89,10 @@ function dockerPrune() {
     docker image prune --all --force --filter="label=com.wuerth.product=sssh"
 }
 
+function stop() {
+    dockerComposeDown
+}
+
 # Commands
 
 if [ "$1" == "install" ]
@@ -92,6 +101,9 @@ then
 elif [ "$1" == "start" -o "$1" == "restart" ]
 then
     restart
+elif [ "$1" == "stop" -o "$1" == "stop" ]
+then
+    stop
 elif [ "$1" == "update" ]
 then
     dockerComposeDown
