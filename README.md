@@ -4,11 +4,11 @@
 
 Just run the following commands to setup your SSSH-Backend Server:
 
-`wget https://raw.githubusercontent.com/lucienkerl/sssh-backend/master/scripts/sssh.sh && chmod +x sssh.sh`
-
-`./sssh.sh install`
-
-`./sssh.sh start`
+```
+wget https://raw.githubusercontent.com/lucienkerl/sssh-backend/master/scripts/sssh.sh && chmod +x sssh.sh
+./sssh.sh install
+./sssh.sh start
+```
 
 ## Development
 
