@@ -111,8 +111,9 @@ then
     restart
     stop
     cd $DOCKER_DIR/config
-    cp config.example.js config.js
-    sed 's/$JWTTOKEN/pony/g' config.js
+    search="\$JWTTOKEN"
+    replace=$(date +%s | sha256sum | base64 | head -c 32 ; echo)
+    sed -i "" "s/${search}/${replace}/g" config.js
 elif [ "$1" == "start" -o "$1" == "restart" ]
 then
     restart

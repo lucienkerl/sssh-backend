@@ -36,6 +36,7 @@ then
 fi
 
 DOCKER_DIR="$OUTPUT/docker"
+CONFIG_DIR="$OUTPUT/docker/config"
 SCRIPTS_DIR="$OUTPUT/scripts"
 GITHUB_BASE_URL="https://raw.githubusercontent.com/lucienkerl/sssh-backend/master/"
 COREVERSION="latest"
@@ -66,6 +67,15 @@ function downloadComposeFile() {
     curl -s -o $DOCKER_DIR/docker-compose.yml $GITHUB_BASE_URL/docker-compose.yml
     chmod u+x $DOCKER_DIR/docker-compose.yml
     rm -f $DOCKER_DIR/install.sh
+}
+
+function downloadConfigFile() {
+    if [ ! -d "$CONFIG_DIR" ]
+    then
+        mkdir $CONFIG_DIR
+    fi
+    curl -s -o $CONFIG_DIR/config.js $GITHUB_BASE_URL/src/config/config.example.js
+    chmod u+x $CONFIG_DIR/config.js
 }
 
 function checkOutputDirExists() {
@@ -112,6 +122,7 @@ then
     mkdir -p $OUTPUT
     downloadRunFile
     downloadComposeFile
+    downloadConfigFile
     cd $SCRIPTS_DIR
     ./run.sh install $OUTPUT $COREVERSION $WEBVERSION
 elif [ "$1" == "start" -o "$1" == "restart" ]
