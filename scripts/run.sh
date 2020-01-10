@@ -19,6 +19,7 @@ OS="lin"
 ENV_DIR="$OUTPUT_DIR/env"
 DOCKER_DIR="$OUTPUT_DIR"
 if [ -d "$OUTPUT_DIR/docker" ]
+then
     DOCKER_DIR="$OUTPUT_DIR/docker"
 fi
 
