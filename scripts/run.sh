@@ -18,6 +18,9 @@ OS="lin"
 [ "$(uname)" == "Darwin" ] && OS="mac"
 ENV_DIR="$OUTPUT_DIR/env"
 DOCKER_DIR="$OUTPUT_DIR"
+if [ -d "$OUTPUT_DIR/docker" ]
+    DOCKER_DIR="$OUTPUT_DIR/docker"
+fi
 
 # Initialize UID/GID which will be used to run services from within containers
 if ! grep -q "^LOCAL_UID=" $ENV_DIR/uid.env 2>/dev/null || ! grep -q "^LOCAL_GID=" $ENV_DIR/uid.env 2>/dev/null
