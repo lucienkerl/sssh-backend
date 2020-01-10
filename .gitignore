@@ -78,3 +78,5 @@ typings/
 
 
 data/
+
+src/config/config.js
