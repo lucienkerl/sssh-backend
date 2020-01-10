@@ -56,7 +56,7 @@ function dockerComposeFiles() {
     then
         export COMPOSE_FILE="$DOCKER_DIR/docker-compose.yml:$DOCKER_DIR/docker-compose.override.yml"
     else
-        if [ DEV ]
+        if [ "$DEV" == true ]
         then
             export COMPOSE_FILE="$DOCKER_DIR/docker-compose.dev.yml"
         else

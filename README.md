@@ -1,5 +1,15 @@
 # sssh-backend
 
+## Setup
+
+Just run the following commands to setup your SSSH-Backend Server:
+
+`wget https://raw.githubusercontent.com/lucienkerl/sssh-backend/master/scripts/sssh.sh && chmod +x sssh.sh`
+
+`./sssh.sh install`
+
+`./sssh.sh start`
+
 ## Development
 
 There are two ways of running a dev server.
@@ -15,7 +25,11 @@ There are two ways of running a dev server.
     ```launchctl remove homebrew.mxcl.mongodb; pkill -f mongod```
 
 #### Start the Docker Containers
-Just run: ```npm run dev-docker```. You should now have a MongoDB and NodeJS instance running. Just edit the source code. Nodemon will handle a NodeJS Server restart for you.
+Just run: 
+
+```npm run dev-docker```
+
+You should now have a MongoDB and NodeJS instance running. Just edit the source code. Nodemon will handle a NodeJS Server restart for you.
 
 ### Method 2 (Managed by yourself)
 

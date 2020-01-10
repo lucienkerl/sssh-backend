@@ -112,33 +112,40 @@ then
     mkdir -p $OUTPUT
     downloadRunFile
     downloadComposeFile
-    $SCRIPTS_DIR/run.sh install $OUTPUT $COREVERSION $WEBVERSION
+    cd $SCRIPTS_DIR
+    ./run.sh install $OUTPUT $COREVERSION $WEBVERSION
 elif [ "$1" == "start" -o "$1" == "restart" ]
 then
     checkOutputDirExists
-    $SCRIPTS_DIR/run.sh restart $OUTPUT $COREVERSION $WEBVERSION
+    cd $SCRIPTS_DIR
+    ./run.sh restart $OUTPUT $COREVERSION $WEBVERSION
 elif [ "$1" == "update" ]
 then
     checkOutputDirExists
     downloadRunFile
     downloadComposeFile
-    $SCRIPTS_DIR/run.sh update $OUTPUT $COREVERSION $WEBVERSION
+    cd $SCRIPTS_DIR
+    ./run.sh update $OUTPUT $COREVERSION $WEBVERSION
 elif [ "$1" == "rebuild" ]
 then
     checkOutputDirExists
-    $SCRIPTS_DIR/run.sh rebuild $OUTPUT $COREVERSION $WEBVERSION
+    cd $SCRIPTS_DIR
+    ./run.sh rebuild $OUTPUT $COREVERSION $WEBVERSION
 elif [ "$1" == "updateconf" ]
 then
     checkOutputDirExists
-    $SCRIPTS_DIR/run.sh updateconf $OUTPUT $COREVERSION $WEBVERSION
+    cd $SCRIPTS_DIR
+    ./run.sh updateconf $OUTPUT $COREVERSION $WEBVERSION
 elif [ "$1" == "updatedb" ]
 then
     checkOutputDirExists
-    $SCRIPTS_DIR/run.sh updatedb $OUTPUT $COREVERSION $WEBVERSION
+    cd $SCRIPTS_DIR
+    ./run.sh updatedb $OUTPUT $COREVERSION $WEBVERSION
 elif [ "$1" == "stop" ]
 then
     checkOutputDirExists
-    $SCRIPTS_DIR/run.sh stop $OUTPUT $COREVERSION $WEBVERSION
+    cd $SCRIPTS_DIR
+    ./run.sh stop $OUTPUT $COREVERSION $WEBVERSION
 elif [ "$1" == "updateself" ]
 then
     downloadSelf && echo "Updated self." && exit
